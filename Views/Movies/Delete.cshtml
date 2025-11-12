@@ -1,0 +1,32 @@
+﻿@model Fall2025_Project3_snkyemba.Models.Movie
+@{
+    ViewData["Title"] = "Delete Movie";
+}
+
+<h2>Delete Movie</h2>
+<h4>Are you sure you want to delete this movie?</h4>
+<hr />
+
+<div class="card p-3 mb-3">
+    <dl class="row">
+        <dt class="col-sm-2">Title</dt>
+        <dd class="col-sm-10">@Model.Title</dd>
+
+        <dt class="col-sm-2">Genre</dt>
+        <dd class="col-sm-10">@Model.Genre</dd>
+
+        <dt class="col-sm-2">Year</dt>
+        <dd class="col-sm-10">@Model.Year</dd>
+
+        <dt class="col-sm-2">IMDB Link</dt>
+        <dd class="col-sm-10">
+            <a href="@Model.IMDBLink" target="_blank">Link</a>
+        </dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,52 @@
+﻿@model Fall2025_Project3_snkyemba.Models.Actor
+
+@{
+    ViewData["Title"] = "Add Actor";
+}
+
+<h2>Add Actor</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name <span class="text-danger">*</span></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Gender" class="form-label">Gender <span class="text-danger">*</span></label>
+        <select asp-for="Gender" class="form-select">
+            <option value="">Select Gender</option>
+            <option>Female</option>
+            <option>Male</option>
+            <option>Non-binary/Other</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Age" class="form-label">Age <span class="text-danger">*</span></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IMDBLink" class="form-label">IMDB Link <span class="text-danger">*</span></label>
+        <input asp-for="IMDBLink" class="form-control" />
+        <span asp-validation-for="IMDBLink" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label for="PhotoFile" class="form-label">Photo <span class="text-danger">*</span></label>
+        <input type="file" name="PhotoFile" class="form-control" />
+    </div>
+
+    <p class="text-danger"><span class="text-danger">*</span> Required</p>
+
+    <button type="submit" class="btn btn-primary">Add Actor</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

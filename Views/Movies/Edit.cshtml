@@ -1,0 +1,57 @@
+﻿@model Fall2025_Project3_snkyemba.Models.Movie
+@{
+    ViewData["Title"] = "Edit Movie";
+}
+
+<h2>Edit Movie</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="IMDBLink" class="form-label"></label>
+        <input asp-for="IMDBLink" class="form-control" />
+        <span asp-validation-for="IMDBLink" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Genre" class="form-label"></label>
+        <input asp-for="Genre" class="form-control" />
+        <span asp-validation-for="Genre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Year" class="form-label"></label>
+        <input asp-for="Year" class="form-control" type="number" />
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label for="PosterFile" class="form-label">Poster</label>
+        <input type="file" name="PosterFile" class="form-control" />
+        <small class="form-text text-muted">Leave blank to keep current poster</small>
+    </div>
+
+    @if (Model.Poster != null && Model.Poster.Length > 0)
+    {
+        <div class="mb-3">
+            <p>Current poster:</p>
+            <img src="@(Convert.ToBase64String(Model.Poster) != null ?
+                                 $"data:image/jpeg;base64,{Convert.ToBase64String(Model.Poster)}" : "")"
+             class="img-thumbnail" style="max-width: 300px;" />
+    </div>
+        }
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

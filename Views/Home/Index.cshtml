@@ -1,8 +1,64 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Movie & Actor Manager</h1>
+    <p class="lead">Manage your favorite movies and actors with AI-powered reviews and sentiment analysis</p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body text-center">
+                <h2 class="card-title">
+                    <i class="bi bi-film"></i> Movies
+                </h2>
+                <p class="card-text">
+                    Browse and manage movies in our database. View AI-generated reviews and sentiment analysis for each film.
+                </p>
+                <a asp-controller="Movies" asp-action="Index" class="btn btn-primary btn-lg">
+                    View Movies
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-body text-center">
+                <h2 class="card-title">
+                    <i class="bi bi-people"></i> Actors
+                </h2>
+                <p class="card-text">
+                    Explore our collection of actors. Discover AI-generated tweets and sentiment analysis about each performer.
+                </p>
+                <a asp-controller="Actors" asp-action="Index" class="btn btn-primary btn-lg">
+                    View Actors
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h3 class="card-title">About This Site</h3>
+                <p class="card-text">
+                    This website allows you to manage a database of movies and actors. Each movie and actor
+                    features AI-powered content analysis:
+                </p>
+                <ul>
+                    <li><strong>Movies:</strong> Get 10 AI-generated reviews with sentiment analysis to gauge public opinion</li>
+                    <li><strong>Actors:</strong> View 20 AI-generated tweets with sentiment analysis to see how people feel about each performer</li>
+                    <li><strong>Relationships:</strong> Track which actors appear in which movies</li>
+                </ul>
+                <p class="card-text">
+                    All sentiment analysis uses advanced natural language processing to determine whether content is positive, negative, or neutral.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>

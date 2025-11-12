@@ -1,0 +1,106 @@
+﻿@model Fall2025_Project3_snkyemba.ViewModels.ActorDetailsViewModel
+@{
+    ViewData["Title"] = "Actor Details";
+}
+
+<h2>@Model.Actor.Name</h2>
+
+<div class="mb-3">
+    <strong>Gender:</strong> @Model.Actor.Gender
+</div>
+<div class="mb-3">
+    <strong>Age:</strong> @Model.Actor.Age
+</div>
+<div class="mb-3">
+    <strong>IMDB:</strong> <a href="@Model.Actor.IMDBLink" target="_blank">Link</a>
+</div>
+
+@if (Model.Actor.Photo != null && Model.Actor.Photo.Length > 0)
+{
+    <div class="mb-3">
+        <img src="@(String.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(Model.Actor.Photo)))"
+             alt="@Model.Actor.Name" class="img-thumbnail" style="max-width: 200px;" />
+    </div>
+}
+else
+{
+    <div class="mb-3">
+        <em>No photo available</em>
+    </div>
+}
+
+<h3>Movies</h3>
+@if (Model.Actor.ActorMovies != null && Model.Actor.ActorMovies.Any())
+{
+    <ul>
+        @foreach (var am in Model.Actor.ActorMovies)
+        {
+            <li>
+                <a asp-controller="Movies" asp-action="Details" asp-route-id="@am.Movie.Id">
+                    @am.Movie.Title
+                </a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No movies listed for this actor.</p>
+}
+
+<h3>Overall Sentiment About @Model.Actor.Name</h3>
+<p>
+    @{
+        var overallLabel = Model.OverallSentiment >= 0.05 ? "Positive" :
+        Model.OverallSentiment <= -0.05 ? "Negative" : "Neutral";
+        var overallClass = Model.OverallSentiment >= 0.05 ? "text-success" :
+        Model.OverallSentiment <= -0.05 ? "text-danger" : "text-warning";
+    }
+    <strong class="@overallClass">@overallLabel (@Model.OverallSentiment.ToString("F3"))</strong>
+</p>
+
+<h3>Tweets and Sentiment Analysis</h3>
+@if (Model.Tweets != null && Model.Tweets.Count > 0)
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tweet</th>
+                <th>Sentiment Analysis</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Tweets.Count; i++)
+            {
+                var sentiment = Model.TweetSentiments[i];
+                var compound = sentiment.Compound;
+                var label = compound >= 0.05 ? "Positive" :
+                compound <= -0.05 ? "Negative" : "Neutral";
+                var cssClass = compound >= 0.05 ? "text-success" :
+                compound <= -0.05 ? "text-danger" : "text-warning";
+
+                <tr>
+                    <td>@Model.Tweets[i]</td>
+                    <td>
+                        <strong class="@cssClass">@label (@compound.ToString("F3"))</strong>
+                        <br />
+                        <small class="text-muted">
+                            Positive: @sentiment.Positive.ToString("F2") |
+                            Negative: @sentiment.Negative.ToString("F2") |
+                            Neutral: @sentiment.Neutral.ToString("F2")
+                        </small>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No tweets available</p>
+}
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Actor.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

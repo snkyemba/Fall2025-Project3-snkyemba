@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Fall2025_Project3_snkyemba.Models.Movie>
+
+<h2>Movies</h2>
+
+<a class="btn btn-primary mb-3" href="/Movies/Create">Add New Movie</a>
+
+<table id="moviesTable" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Year</th>
+            <th>IMDB</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.Genre</td>
+                <td>@movie.Year</td>
+                <td><a href="@movie.IMDBLink" target="_blank">Link</a></td>
+                <td>
+                    <a class="btn btn-sm btn-info" href="/Movies/Details/@movie.Id">Details</a>
+                    <a class="btn btn-sm btn-warning" href="/Movies/Edit/@movie.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/Movies/Delete/@movie.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#moviesTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "lengthMenu": [10, 25, 50, 100]
+            });
+        });
+    </script>
+}

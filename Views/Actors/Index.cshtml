@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Fall2025_Project3_snkyemba.Models.Actor>
+@{
+    ViewData["Title"] = "Actors";
+}
+
+<h2>Actors</h2>
+
+<a class="btn btn-primary mb-3" asp-action="Create">Add New Actor</a>
+
+<table id="actorsTable" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>IMDB</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var actor in Model)
+        {
+            <tr>
+                <td>@actor.Name</td>
+                <td>@actor.Gender</td>
+                <td>@actor.Age</td>
+                <td><a href="@actor.IMDBLink" target="_blank">Link</a></td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@actor.Id">Details</a>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@actor.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@actor.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#actorsTable').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "lengthMenu": [10, 25, 50, 100]
+            });
+        });
+    </script>
+}
