@@ -1,0 +1,34 @@
+﻿@model Fall2025_Project3_snkyemba.Models.ActorMovie
+@{
+    ViewData["Title"] = "Add Actor-Movie Relationship";
+}
+
+<h2>Add Actor-Movie Relationship</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="ActorId" class="form-label">Actor <span class="text-danger">*</span></label>
+        <select asp-for="ActorId" class="form-select" asp-items="ViewBag.ActorId">
+            <option value="">-- Select Actor --</option>
+        </select>
+        <span asp-validation-for="ActorId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MovieId" class="form-label">Movie <span class="text-danger">*</span></label>
+        <select asp-for="MovieId" class="form-select" asp-items="ViewBag.MovieId">
+            <option value="">-- Select Movie --</option>
+        </select>
+        <span asp-validation-for="MovieId" class="text-danger"></span>
+    </div>
+
+    <p class="text-danger"><span class="text-danger">*</span> Required</p>
+    <button type="submit" class="btn btn-primary">Add Relationship</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

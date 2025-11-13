@@ -25,7 +25,7 @@ namespace Fall2025_Project3_snkyemba.Services
             var messages = new List<ChatMessage>
             {
                 new SystemChatMessage("You are a movie critic who writes concise reviews."),
-                new UserChatMessage($"Write 10 short, distinct movie reviews for '{movieTitle}'. Number each review (1-10). Each review should be 2-3 sentences.")
+                new UserChatMessage($"Write 3 short, distinct movie reviews for '{movieTitle}'. Number each review (1-3). Each review should be 2-3 sentences.")
             };
 
             var response = await chatClient.CompleteChatAsync(messages);
@@ -36,7 +36,7 @@ namespace Fall2025_Project3_snkyemba.Services
                 .Where(line => !string.IsNullOrWhiteSpace(line))
                 .Select(line => line.Trim())
                 .Where(line => line.Length > 10) // Filter out very short lines
-                .Take(10)
+                .Take(3)
                 .ToList();
 
             return reviews;
@@ -49,7 +49,7 @@ namespace Fall2025_Project3_snkyemba.Services
             var messages = new List<ChatMessage>
             {
                 new SystemChatMessage("You are a social media user who tweets about actors and movies."),
-                new UserChatMessage($"Write 20 short tweets about the actor '{actorName}'. Number each tweet (1-20). Each tweet should be realistic and varied in tone.")
+                new UserChatMessage($"Write 5 short tweets about the actor '{actorName}'. Number each tweet (1-5). Each tweet should be realistic and varied in tone.")
             };
 
             var response = await chatClient.CompleteChatAsync(messages);
@@ -60,7 +60,7 @@ namespace Fall2025_Project3_snkyemba.Services
                 .Where(line => !string.IsNullOrWhiteSpace(line))
                 .Select(line => line.Trim())
                 .Where(line => line.Length > 10) // Filter out very short lines
-                .Take(20)
+                .Take(5)
                 .ToList();
 
             return tweets;

@@ -22,7 +22,22 @@
 
     <div class="mb-3">
         <label asp-for="Genre" class="form-label"></label>
-        <input asp-for="Genre" class="form-control" />
+        <select asp-for="Genre" class="form-select">
+            <option value="">Select Genre</option>
+            <option>Action</option>
+            <option>Adventure</option>
+            <option>Comedy</option>
+            <option>Drama</option>
+            <option>Fantasy</option>
+            <option>Horror</option>
+            <option>Mystery</option>
+            <option>Romance</option>
+            <option>Sci-Fi</option>
+            <option>Thriller</option>
+            <option>Western</option>
+            <option>Animation</option>
+            <option>Documentary</option>
+        </select>
         <span asp-validation-for="Genre" class="text-danger"></span>
     </div>
 

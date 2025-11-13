@@ -11,6 +11,7 @@ namespace Fall2025_Project3_snkyemba.Models
 
         public string Gender { get; set; }
 
+        [Range(0, 122, ErrorMessage = "Age must be between 0 and 122")]
         public int Age { get; set; }
 
         [Display(Name = "IMDB Link")]

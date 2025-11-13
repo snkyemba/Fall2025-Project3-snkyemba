@@ -13,6 +13,7 @@ namespace Fall2025_Project3_snkyemba.Models
 
         public string Genre { get; set; }
 
+        [Range(1888, 2035, ErrorMessage = "Year must be between 1888 and 2035")]
         public int Year { get; set; }
 
         [Display(Name = "IMDB Link")]
